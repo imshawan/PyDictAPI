@@ -36,7 +36,7 @@ Full documentation is at <https://github.com/imshawan/PyDictAPI>.
 :license: MIT License, see LICENSE for more details.
 """
 __author__ = "Shawan Mandal"
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 try:
     from .scrape import *
