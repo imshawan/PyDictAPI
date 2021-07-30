@@ -1,8 +1,8 @@
 [![PyDictAPI: Passing](https://img.shields.io/badge/PyDictAPI-Passing-limegreen)](https://github.com/imshawan/PyDictAPI)
 [![GitHub license](https://img.shields.io/github/license/imshawan/PyDictAPI)](https://github.com/imshawan/PyDictAPI/blob/master/LICENSE.txt)
-![Release: 1.0.1](https://img.shields.io/badge/Release-1.0.1-informational)
+![Release: 1.1.0](https://img.shields.io/badge/Release-1.1.0-informational)
 
-# PyDictionaryAPI -
+# PyDictionaryAPI
 ### A simple web-scraping based Dictionary Module for Python
 
 PyDictAPI is a Dictionary Module for Python 3+ to get a detailed and well-structured meanings of a queried word in JSON format. This module can also be used along with Flask/Django backends to make a full-fledged API server.<br><br>
@@ -37,22 +37,22 @@ The Response can be seen as:
 
 ```
 {
-    'word': 'apple', 
+    'word': 'Apple', 
     'meanings': [
             {
-                'partOfSpeech': 'noun', 
+                'partOfSpeech': 'Noun', 
                 'definations': [
                         {
-                            'definition': 'the usually round, red or yellow, edible fruit of a small tree, Malus sylvestris, of the rose family.', 
+                            'definition': 'The usually round, red or yellow, edible fruit of a small tree, Malus sylvestris, of the rose family.', 
                             'example': ''
                         }
                     ]
             }, 
             {
-                'partOfSpeech': 'noun', 
+                'partOfSpeech': 'Noun', 
                 'definations': [
                     {
-                        'definition': 'a rosaceous tree, Malus sieversii, native to Central Asia but widely cultivated in temperate regions in many varieties, having pink or white fragrant flowers and firm rounded edible fruits', 
+                        'definition': 'A rosaceous tree, Malus sieversii, native to Central Asia but widely cultivated in temperate regions in many varieties, having pink or white fragrant flowers and firm rounded edible fruits', 
                         'example': ''
                     }
                 ]
@@ -85,11 +85,11 @@ The Response can be seen as:
 
 ```
 {
-    'message': 'Couldn't find any results for ABCDEFGHIJKL, try searching the web again...'
+    'message': 'Couldn't find any results for ABCDEFGHIJKL, try searching the web...'
 }
 ```
 
 ## About
 
-Current Version: 1.0.0 <br>
+Current Version: 1.1.0 <br>
 Copyright (c) 2021 Shawan Mandal.

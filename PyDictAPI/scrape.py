@@ -1,3 +1,11 @@
+"""
+Author: Shawan Mandal
+    
+MIT License, see LICENSE for more details.
+Copyright (c) 2021 Shawan Mandal
+
+"""
+
 import sys
 try:
     from utils import handleRequests, getSoupObj
@@ -14,7 +22,7 @@ class MeaningsFinder(object):
         >>> Meanings = MeaningsFinder()
         >>> print(Meanings.findMeanings('apple'))
     """
-    def __init__(self, *args):
+    def __init__(self):
         self.isPython3 = True
         if (sys.version_info.major) < 3:
             self.isPython3 = False
@@ -52,7 +60,7 @@ class MeaningsFinder(object):
         res = handleRequests(word)
         soup = getSoupObj(res)
         dataItems = {
-            "word": word,
+            "word": word.title(),
             "meanings": []
         }
 
@@ -67,7 +75,7 @@ class MeaningsFinder(object):
                     pos1.replaceWith('')
             for pos2 in partOfSpeech.find_all("span", {'class':'luna-pronset'}):
                     pos2.replaceWith('')
-            partOfSpeech = partOfSpeech.get_text()
+            partOfSpeech = partOfSpeech.get_text().title()
             json_contents = {
                 "partOfSpeech": partOfSpeech,
                 "definations": []
@@ -80,7 +88,8 @@ class MeaningsFinder(object):
                 if def_content:
                     for tag in def_content.find_all("span", {'class':'luna-example'}):
                         tag.replaceWith('')
-                    def_content = def_content.get_text().replace('(', '').replace(')', '').replace(':', '')
+                    def_content = def_content.get_text().replace('(', '').replace(')', '').replace(':', '').strip()
+                    def_content = def_content[0].upper() + def_content[1:]
                 else:
                     def_content = ''
             

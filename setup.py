@@ -12,8 +12,8 @@ with open("README.md", "r") as readme:
 
 setuptools.setup(
     name="PyDictAPI",
-    version="1.0.1",
-    author="imshawan",
+    version="1.1.0",
+    author="Shawan Mandal",
     author_email="imshawan.dev049@gmail.com",
     description="A simple web-scraping based Dictionary Module for Python",
     long_description=long_description,
