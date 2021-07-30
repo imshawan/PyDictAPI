@@ -1,11 +1,11 @@
 [![PyDictAPI: Passing](https://img.shields.io/badge/PyDictAPI-Passing-limegreen)](https://github.com/imshawan/PyDictAPI)
 [![GitHub license](https://img.shields.io/github/license/imshawan/PyDictAPI)](https://github.com/imshawan/PyDictAPI/blob/master/LICENSE.txt)
-![Release: 1.0.0](https://img.shields.io/badge/Release-1.0.0-informational)
+![Release: 1.0.1](https://img.shields.io/badge/Release-1.0.1-informational)
 
 # PyDictionaryAPI -
 ### A simple web-scraping based Dictionary Module for Python
 
-PyDictAPI is a Dictionary Module for Python 3+ to get a detailed and well-structured meanings of a queried word in JSON format. This module can also be used along with Flask/Django backends to make a full-fledged API server.
+PyDictAPI is a Dictionary Module for Python 3+ to get a detailed and well-structured meanings of a queried word in JSON format. This module can also be used along with Flask/Django backends to make a full-fledged API server.<br><br>
 PyDictAPI searches for the query passed on the web, if the query matches than it returns the definations of that particular query. And incase of incorrect words, the response is returned as a suggestion of the correct word.
 
 >  **Note** It uses Dictionary.com for extracting the meanings.
