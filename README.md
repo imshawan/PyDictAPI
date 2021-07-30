@@ -35,7 +35,7 @@ print(Meanings.findMeanings('apple'))
 This is will create a local instance of the MeaningsFinder class and will return a dictionary containing the meanings of the word. <br>
 The Response can be seen as:
 
-```json
+```
 {
     'word': 'apple', 
     'meanings': [
