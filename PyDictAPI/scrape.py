@@ -44,7 +44,7 @@ class MeaningsFinder(object):
             1.  Returns any possible matches incase if the queried word is not found
             2.  Returns a resolution incase if nothing is found
             '''
-            resolution = {"message": f"Couldn't find any results for {word.upper()}, try searching the web again..."}
+            resolution = {"message": f"Couldn't find any results for {word.upper()}, try searching the web..."}
 
             res = handleRequests(word)
             soup = getSoupObj(res)
