@@ -8,10 +8,11 @@
 
 PyDictAPI is a Dictionary Module for Python 3+ to get a detailed and well-structured meanings of a queried word in JSON format. This module can also be used along with Flask/Django backends to make a full-fledged API server.<br><br>
 PyDictAPI searches for the query passed on the web, if the query matches than it returns the definitions of that particular query. And incase of incorrect words, the response is returned as a suggestion of the correct word.
+<br>
 
 >  **Note** It uses Dictionary.com for extracting the meanings.
 
-This module uses Requests, BeautifulSoup4 dependencies to scrape the web and find the definitions and return it in a well-structured JSON document
+This module uses Requests and bs4 dependencies to scrape the web and find the definitions and return it in a well-structured JSON document
 
 ## Installation
 
@@ -92,5 +93,4 @@ The Response can be seen as:
 
 ## About
 
-Current Version: 1.1.0 <br>
 Copyright (c) 2021 Shawan Mandal.

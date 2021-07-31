@@ -21,7 +21,7 @@ Response:
         'meanings': [
             {
                 'partOfSpeech': 'noun', 
-                'definations': [
+                'definitions': [
                     {
                         'definition': 'the usually round, red or yellow, edible fruit of a small tree, Malus sylvestris, of the rose family.', 
                         'example': ''
@@ -30,7 +30,7 @@ Response:
             }, 
             {
                 'partOfSpeech': 'noun', 
-                'definations': [
+                'definitions': [
                     {
                         'definition': 'a rosaceous tree, Malus sieversii, native to Central Asia but widely cultivated in temperate regions in many varieties, having pink or white fragrant flowers and firm rounded edible fruits', 
                         'example': ''
@@ -47,7 +47,7 @@ copyright: (c) 2021 by Shawan Mandal.
 license: MIT License, see LICENSE for more details.
 """
 __author__ = "Shawan Mandal"
-__version__ = "1.1.0"
+__version__ = "1.1.2"
 
 try:
     from .scrape import *
