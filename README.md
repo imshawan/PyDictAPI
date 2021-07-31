@@ -1,5 +1,4 @@
-[![PyDictAPI: Passing](https://img.shields.io/badge/PyDictAPI-Passing-limegreen)](https://github.com/imshawan/PyDictAPI)
-[![Build Status](http://img.shields.io/travis/imshawan/PyDictAPI/master.svg?style=flat-square)](https://github.com/imshawan/PyDictAPI)
+[![PyDictAPI: Stable](https://img.shields.io/badge/PyDictAPI-Passing-limegreen)](https://github.com/imshawan/PyDictAPI)
 [![GitHub license](https://img.shields.io/github/license/imshawan/PyDictAPI)](https://github.com/imshawan/PyDictAPI/blob/master/LICENSE.txt)
 [![Latest Version](http://img.shields.io/pypi/v/PyDictAPI.svg?style=flat-square)](https://pypi.python.org/pypi/PyDictAPI/)
 [![Downloads](https://img.shields.io/pypi/dm/PyDictAPI.svg?style=flat-square)](https://pypi.python.org/pypi/PyDictAPI/)
