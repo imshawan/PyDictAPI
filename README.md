@@ -6,11 +6,11 @@
 ### A simple web-scraping based Dictionary Module for Python
 
 PyDictAPI is a Dictionary Module for Python 3+ to get a detailed and well-structured meanings of a queried word in JSON format. This module can also be used along with Flask/Django backends to make a full-fledged API server.<br><br>
-PyDictAPI searches for the query passed on the web, if the query matches than it returns the definations of that particular query. And incase of incorrect words, the response is returned as a suggestion of the correct word.
+PyDictAPI searches for the query passed on the web, if the query matches than it returns the definitions of that particular query. And incase of incorrect words, the response is returned as a suggestion of the correct word.
 
 >  **Note** It uses Dictionary.com for extracting the meanings.
 
-This module uses Requests, BeautifulSoup4 dependencies to scrape the web and find the definations and return it in a well-structured JSON document
+This module uses Requests, BeautifulSoup4 dependencies to scrape the web and find the definitions and return it in a well-structured JSON document
 
 ## Installation
 
@@ -41,7 +41,7 @@ The Response can be seen as:
     'meanings': [
             {
                 'partOfSpeech': 'Noun', 
-                'definations': [
+                'definitions': [
                         {
                             'definition': 'The usually round, red or yellow, edible fruit of a small tree, Malus sylvestris, of the rose family.', 
                             'example': ''
@@ -50,7 +50,7 @@ The Response can be seen as:
             }, 
             {
                 'partOfSpeech': 'Noun', 
-                'definations': [
+                'definitions': [
                     {
                         'definition': 'A rosaceous tree, Malus sieversii, native to Central Asia but widely cultivated in temperate regions in many varieties, having pink or white fragrant flowers and firm rounded edible fruits', 
                         'example': ''
