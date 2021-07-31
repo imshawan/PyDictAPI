@@ -78,12 +78,12 @@ class MeaningsFinder(object):
             partOfSpeech = partOfSpeech.get_text().title()
             json_contents = {
                 "partOfSpeech": partOfSpeech,
-                "definations": []
+                "definitions": []
             }
-            definations = each.findAll(attrs={'class': 'css-1uqerbd e1hk9ate0'})
+            definitions = each.findAll(attrs={'class': 'css-1uqerbd e1hk9ate0'})
             def_list = ""
-            for defination in definations:
-                def_content = defination.find(attrs={'class': 'e1q3nk1v1'})
+            for definition in definitions:
+                def_content = definition.find(attrs={'class': 'e1q3nk1v1'})
             
                 if def_content:
                     for tag in def_content.find_all("span", {'class':'luna-example'}):
@@ -94,7 +94,7 @@ class MeaningsFinder(object):
                     def_content = ''
             
                 try:
-                    example = defination.find(attrs={'class': 'luna-example'}).text
+                    example = definition.find(attrs={'class': 'luna-example'}).text
                 except:
                     example = ""
 
@@ -108,7 +108,7 @@ class MeaningsFinder(object):
                     "example": example
                 }
             if defFound:
-                json_contents['definations'].append(json_content)
+                json_contents['definitions'].append(json_content)
                 dataItems['meanings'].append(json_contents)
             else:
                 pass
