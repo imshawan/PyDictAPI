@@ -21,7 +21,7 @@ PyDictAPI can be easily installed through [PIP](https://pip.pypa.io/en/stable/)
 ```
 pip install PyDictAPI
 ```
-#### [View Changelog]](./CHANGELOG.md)
+#### [View Changelog](https://github.com/imshawan/PyDictAPI/blob/master/CHANGELOG.md)
 
 ## Usage
 
