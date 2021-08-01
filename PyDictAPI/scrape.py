@@ -119,7 +119,7 @@ class Finder(object):
             return suggestions
         #return word, dataItems
 
-    def findUsage(self, word, max=5):
+    def findUsage(self, query, max=5):
         """
         getUsage
         -----
@@ -136,7 +136,7 @@ class Finder(object):
         else:
             raise PythonVersionError("Python version 3 or newer is required")
 
-        res = ParseUsagePage(word)
+        res = ParseUsagePage(query)
         soup = getSoupObj(res)
         usageExamples = {}
         examples = []
@@ -160,3 +160,6 @@ class Finder(object):
         }
 
         return usageExamples
+    
+    def findSynonyms(self, query, max=5):
+        pass
