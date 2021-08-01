@@ -6,11 +6,11 @@ Copyright (c) 2021 Shawan Mandal
 
 """
 
-import sys
+import sys, re
 try:
-    from utils import handleRequests, getSoupObj
+    from utils import handleRequests, getSoupObj, ParseUsagePage
 except:
-    from .utils import handleRequests, getSoupObj
+    from .utils import handleRequests, getSoupObj, ParseUsagePage
 
 class PythonVersionError(Exception):
     pass
@@ -118,3 +118,35 @@ class Finder(object):
             suggestions = self.IfnotFound(word)
             return suggestions
         #return word, dataItems
+
+    def getUsage(self, word, max=5):
+        """
+        getUsage
+        -----
+        Returns a list of usage examples \n
+        Args: Query -> (string), Maximum items -> (int) By default its value is 5
+        """
+        if (self.isPython3):
+            pass
+        else:
+            raise PythonVersionError("Python version 3 or newer is required")
+
+        res = ParseUsagePage(word)
+        soup = getSoupObj(res)
+        examples = []
+        try:
+            usageClass = soup.find(attrs={'class': 'examples'})
+            for junk in usageClass.find_all("div", {'class':'moreInfo active'}):
+                            junk.replaceWith('')
+            
+            exg = usageClass.find(attrs={'class': 'exg'})
+            ul = exg.find('ul').find_all('li')
+            count = 0
+            for each in ul:
+                if count < max:
+                    examples.append(each.text[1:][:-1])
+                count += 1
+        except:
+            examples.append("Couldn't find any usage examples...")
+            
+        return examples
