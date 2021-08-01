@@ -39,6 +39,18 @@ Response:
             }
         ]
     }
+---------------------------------------    
+Finding Examples, Synonyms and Antonyms
+---------------------------------------
+
+   >>> print(Meanings.findUsage('help', 2)) #Finding Examples
+   
+    # Here 2 defines the maximum number of examples to be included in the response, 
+    # by default it is set to 5
+
+   >>> print(Meanings.findSynonyms('help', 4)) #Finding Synonyms
+   >>> print(Meanings.findAntonyms('help', 4)) #Finding Antonyms
+ 
 
 Full documentation is at <https://github.com/imshawan/PyDictAPI>.
 
