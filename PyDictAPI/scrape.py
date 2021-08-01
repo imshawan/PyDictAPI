@@ -8,9 +8,9 @@ Copyright (c) 2021 Shawan Mandal
 
 import sys, re
 try:
-    from utils import handleRequests, getSoupObj, ParseUsagePage
+    from utils import handleRequests, getSoupObj, ParseUsage, ParseSynonyms
 except:
-    from .utils import handleRequests, getSoupObj, ParseUsagePage
+    from .utils import handleRequests, getSoupObj, ParseUsage,  ParseSynonyms
 
 class PythonVersionError(Exception):
     pass
@@ -21,8 +21,11 @@ class Finder(object):
     Usage:
         >>> Meanings = Finder()
         >>> print(Meanings.findMeanings('apple'))
+        >>> print(Meanings.findUsage('apple', 8))
+        >>> print(Meanings.findSynonyms('apple', 8))
     """
     def __init__(self):
+        self.searching = "Please wait while I'm searching for "
         self.isPython3 = True
         if (sys.version_info.major) < 3:
             self.isPython3 = False
@@ -56,7 +59,7 @@ class Finder(object):
         else:
             raise PythonVersionError("Python version 3 or newer is required")
 
-        print("Please wait while I'm search for meanings...")
+        print(self.searching + "meanings...")
         res = handleRequests(word)
         soup = getSoupObj(res)
         dataItems = {
@@ -119,7 +122,7 @@ class Finder(object):
             return suggestions
         #return word, dataItems
 
-    def findUsage(self, query, max=5):
+    def findUsage(self, query, maxItems=5):
         """
         getUsage
         -----
@@ -136,7 +139,9 @@ class Finder(object):
         else:
             raise PythonVersionError("Python version 3 or newer is required")
 
-        res = ParseUsagePage(query)
+        print(self.searching + "usage examples...")
+
+        res = ParseUsage(query)
         soup = getSoupObj(res)
         usageExamples = {}
         examples = []
@@ -149,17 +154,56 @@ class Finder(object):
             ul = exg.find('ul').find_all('li')
             count = 0
             for each in ul:
-                if count < max:
+                if count < maxItems:
                     text = each.text[1:][:-1]
                     examples.append(text[0].upper() + text[1:])
                 count += 1
         except:
-            examples.append("Couldn't find any usage examples of it...")
+            examples.append(f"Couldn't find any usage examples of {query}...")
         usageExamples = {
             "word": examples
         }
 
         return usageExamples
     
-    def findSynonyms(self, query, max=5):
-        pass
+    def findSynonyms(self, query, maxItems=5):
+        """
+        findSynonyms
+        ------------
+        Returns a Python Dictionary of Synonyms \n
+        Args: Query -> (string), Maximum items -> (int) By default its value is 5
+
+        Returns: \n
+        {
+            "word": [ ]
+        }
+        """
+
+        if (self.isPython3):
+            pass
+        else:
+            raise PythonVersionError("Python version 3 or newer is required")
+
+        print(self.searching + "Synonyms...")
+
+        res = ParseSynonyms(query)
+        soup = getSoupObj(res)
+        Syns = []
+        Synonyms = {}
+
+        try:
+            count = 0
+            SynonymsClass = soup.find(attrs={'class': 'e1ccqdb60'}).find_all('li')
+            for each in SynonymsClass:
+                if count < maxItems:
+                    Syns.append(each.text[0].upper() + each.text[1:])
+                count += 1
+        except:
+            Syns.append(f"Couldn't find any Synonyms of {query}...")
+
+        Synonyms = {
+            "word": Syns
+        }
+
+        return Synonyms
+        
