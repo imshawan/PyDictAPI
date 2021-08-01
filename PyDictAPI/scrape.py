@@ -119,12 +119,17 @@ class Finder(object):
             return suggestions
         #return word, dataItems
 
-    def getUsage(self, word, max=5):
+    def findUsage(self, word, max=5):
         """
         getUsage
         -----
-        Returns a list of usage examples \n
+        Returns a Python Dictionary of usage examples \n
         Args: Query -> (string), Maximum items -> (int) By default its value is 5
+
+        Returns: \n
+        {
+            "word": [ ]
+        }
         """
         if (self.isPython3):
             pass
@@ -133,6 +138,7 @@ class Finder(object):
 
         res = ParseUsagePage(word)
         soup = getSoupObj(res)
+        usageExamples = {}
         examples = []
         try:
             usageClass = soup.find(attrs={'class': 'examples'})
@@ -144,9 +150,13 @@ class Finder(object):
             count = 0
             for each in ul:
                 if count < max:
-                    examples.append(each.text[1:][:-1])
+                    text = each.text[1:][:-1]
+                    examples.append(text[0].upper() + text[1:])
                 count += 1
         except:
-            examples.append("Couldn't find any usage examples...")
-            
-        return examples
+            examples.append("Couldn't find any usage examples of it...")
+        usageExamples = {
+            "word": examples
+        }
+
+        return usageExamples
