@@ -1,5 +1,9 @@
 What's inside:
------------
+--------------
+
+1.1.2 (01/08/2021)
+------------------
+*   Added new functions for searching Examples, Synonyms and Antonyms.
 
 1.1.2 (31/07/2021)
 ------------------
