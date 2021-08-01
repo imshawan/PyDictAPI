@@ -7,7 +7,7 @@
 ### A simple web-scraping based Dictionary Module for Python
 
 PyDictAPI is a Dictionary Module for Python 3+ to get a detailed and well-structured meanings of a queried word in JSON format. This module can also be used along with Flask/Django backends to make a full-fledged API server.<br><br>
-PyDictAPI searches for the query passed on the web, if the query matches than it returns the definitions of that particular query. And incase of incorrect words, the response is returned as a suggestion of the correct word.
+PyDictAPI searches for the query on the web, if the query matches than it returns the Definitions/Examples/Synonyms/Antonyms as specified by the user. And incase of incorrect words, the response is returned as a suggestion of the correct word.
 <br>
 
 >  **Sources:** [Dictionary.com](https://www.dictionary.com/), [Thesaurus](https://www.thesaurus.com/), [Lexico](https://www.lexico.com/)
@@ -25,7 +25,7 @@ pip install PyDictAPI
 
 ## Usage
 
-PyDictAPI can be used by creating a MeaningsFinder instance which can take a word as argument
+PyDictAPI can be used by creating a Finder instance which can take a word as argument
 
 For example,
 
@@ -91,6 +91,18 @@ The Response can be seen as:
     'message': 'Couldn't find any results for ABCDEFGHIJKL, try searching the web...'
 }
 ```
+## Finding Examples, Synonyms and Antonyms
+
+```python
+print(Meanings.findUsage('help', 2)) #Finding Examples
+#Here 2 defines the maximum number of examples to be included in the response, 
+# by default it is set to 5
+
+print(Meanings.findSynonyms('hello', 4)) #Finding Synonyms
+print(Meanings.findAntonyms('hello', 4)) #Finding Antonyms
+
+```
+
 
 ## About
 
