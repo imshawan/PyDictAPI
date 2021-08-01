@@ -98,9 +98,28 @@ print(Meanings.findUsage('help', 2)) #Finding Examples
 #Here 2 defines the maximum number of examples to be included in the response, 
 # by default it is set to 5
 
-print(Meanings.findSynonyms('hello', 4)) #Finding Synonyms
-print(Meanings.findAntonyms('hello', 4)) #Finding Antonyms
+print(Meanings.findSynonyms('help', 4)) #Finding Synonyms
+print(Meanings.findAntonyms('help', 4)) #Finding Antonyms
 
+```
+
+### Responses for Examples, Synonyms and Antonyms
+
+Examples: <br>
+```
+{
+    'help': ['She helped him find a buyer', 'Long-term funding is desperately being sought for a voluntary service that helps local victims of domestic violence.']
+}
+```
+
+Synonyms: <br>
+```
+{'help': ['Advice', 'Aid', 'Benefit', 'Comfort']}
+```
+
+Antonyms: <br>
+```
+{'help': ['Blockage', 'Encumbrance', 'Handicap', 'Hindrance']}
 ```
 
 
