@@ -10,7 +10,7 @@ PyDictAPI is a Dictionary Module for Python 3+ to get a detailed and well-struct
 PyDictAPI searches for the query passed on the web, if the query matches than it returns the definitions of that particular query. And incase of incorrect words, the response is returned as a suggestion of the correct word.
 <br>
 
->  **Sources:** [Dictionary.com](https://www.dictionary.com/) [Thesaurus](https://www.thesaurus.com/) [Lexico](https://www.lexico.com/)
+>  **Sources:** [Dictionary.com](https://www.dictionary.com/), [Thesaurus](https://www.thesaurus.com/), [Lexico](https://www.lexico.com/)
 
 This module uses Requests and bs4 dependencies to scrape the web and find the definitions and return it in a well-structured JSON document
 
@@ -21,7 +21,7 @@ PyDictAPI can be easily installed through [PIP](https://pip.pypa.io/en/stable/)
 ```
 pip install PyDictAPI
 ```
-#### [View Changelog](https://github.com/imshawan/PyDictAPI/blob/master/CHANGELOG.md)
+### [View Changelog](https://github.com/imshawan/PyDictAPI/blob/master/CHANGELOG.md)
 
 ## Usage
 
