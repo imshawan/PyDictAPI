@@ -6,7 +6,7 @@ Copyright (c) 2021 Shawan Mandal
 
 """
 
-import sys, re
+import sys
 try:
     from utils import handleRequests, getSoupObj, ParseUsage, ParseSynonymsAndAntonyms
 except:

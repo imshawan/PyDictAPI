@@ -4,7 +4,7 @@ classifiers = [
         "Intended Audience :: Education",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
-        "Programming Language :: Python :: 3"
+        "Programming Language :: Python 3"
     ]
 
 with open("README.md", "r") as readme:
@@ -12,7 +12,7 @@ with open("README.md", "r") as readme:
 
 setuptools.setup(
     name="PyDictAPI",
-    version="1.2.0",
+    version="1.3.0",
     author="Shawan Mandal",
     author_email="imshawan.dev049@gmail.com",
     description="A simple web-scraping based Dictionary Module for Python",

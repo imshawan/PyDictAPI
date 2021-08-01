@@ -47,7 +47,7 @@ copyright: (c) 2021 by Shawan Mandal.
 license: MIT License, see LICENSE for more details.
 """
 __author__ = "Shawan Mandal"
-__version__ = "1.2.0"
+__version__ = "1.3.0"
 
 try:
     from .scrape import *
