@@ -95,7 +95,7 @@ The Response can be seen as:
 
 ```python
 print(Meanings.findUsage('help', 2)) #Finding Examples
-#Here 2 defines the maximum number of examples to be included in the response, 
+# Here 2 defines the maximum number of examples to be included in the response, 
 # by default it is set to 5
 
 print(Meanings.findSynonyms('help', 4)) #Finding Synonyms
