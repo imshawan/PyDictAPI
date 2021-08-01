@@ -10,8 +10,8 @@ Currently supports only English-English dictionary searches
 
 Basic usage:
 
-   >>> from PyDictAPI import MeaningsFinder
-   >>> Meanings = MeaningsFinder()
+   >>> from PyDictAPI import Finder
+   >>> Meanings = Finder()
    >>> print(Meanings.findMeanings('apple'))
 
 Response:
@@ -47,7 +47,7 @@ copyright: (c) 2021 by Shawan Mandal.
 license: MIT License, see LICENSE for more details.
 """
 __author__ = "Shawan Mandal"
-__version__ = "1.1.2"
+__version__ = "1.2.0"
 
 try:
     from .scrape import *

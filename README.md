@@ -29,8 +29,8 @@ PyDictAPI can be used by creating a MeaningsFinder instance which can take a wor
 For example,
 
 ```python
-from PyDictAPI import MeaningsFinder
-Meanings = MeaningsFinder()
+from PyDictAPI import Finder
+Meanings = Finder()
 print(Meanings.findMeanings('apple'))
 ```
 

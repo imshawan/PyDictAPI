@@ -12,7 +12,7 @@ with open("README.md", "r") as readme:
 
 setuptools.setup(
     name="PyDictAPI",
-    version="1.1.2",
+    version="1.2.0",
     author="Shawan Mandal",
     author_email="imshawan.dev049@gmail.com",
     description="A simple web-scraping based Dictionary Module for Python",

@@ -15,11 +15,11 @@ except:
 class PythonVersionError(Exception):
     pass
 
-class MeaningsFinder(object):
+class Finder(object):
     """
-    MeaningsFinder
+    Finder
     Usage:
-        >>> Meanings = MeaningsFinder()
+        >>> Meanings = Finder()
         >>> print(Meanings.findMeanings('apple'))
     """
     def __init__(self):
@@ -29,6 +29,23 @@ class MeaningsFinder(object):
         else:
             pass
 
+    def IfnotFound(self, word):
+        '''
+        1.  Returns any possible matches incase if the queried word is not found
+        2.  Returns a resolution incase if nothing is found
+        '''
+        resolution = {"message": f"Couldn't find any results for {word.upper()}, try searching the web..."}
+
+        res = handleRequests(word)
+        soup = getSoupObj(res)
+
+        try:
+            suggestedContent = soup.find(attrs={'class': 'spell-suggestions-subtitle css-ycbn4w e19m0k9k5'})
+            suggestedWord = suggestedContent.find('a')
+            return {"message": f"Couldn't find results for {word}, Did you mean {suggestedWord.text}?"}
+        except:
+            return resolution
+    
     def findMeanings(self, word):
         '''
         Searches for a word and returns response in a python Dictionary Obj,
@@ -38,23 +55,6 @@ class MeaningsFinder(object):
             pass
         else:
             raise PythonVersionError("Python version 3 or newer is required")
-
-        def IfnotFound(word):
-            '''
-            1.  Returns any possible matches incase if the queried word is not found
-            2.  Returns a resolution incase if nothing is found
-            '''
-            resolution = {"message": f"Couldn't find any results for {word.upper()}, try searching the web..."}
-
-            res = handleRequests(word)
-            soup = getSoupObj(res)
-
-            try:
-                suggestedContent = soup.find(attrs={'class': 'spell-suggestions-subtitle css-ycbn4w e19m0k9k5'})
-                suggestedWord = suggestedContent.find('a')
-                return {"message": f"Couldn't find results for {word}, Did you mean {suggestedWord.text}?"}
-            except:
-                return resolution
 
 
         res = handleRequests(word)
@@ -115,6 +115,6 @@ class MeaningsFinder(object):
         if dataItems['meanings']:
             return dataItems
         else:
-            suggestions = IfnotFound(word)
+            suggestions = self.IfnotFound(word)
             return suggestions
         #return word, dataItems
