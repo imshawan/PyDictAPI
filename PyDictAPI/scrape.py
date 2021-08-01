@@ -163,7 +163,7 @@ class Finder(object):
             suggestions = self.__IfnotFound(query)
             examples.append(suggestions)
         usageExamples = {
-            "word": examples
+            f"{query}": examples
         }
 
         return usageExamples
@@ -205,7 +205,7 @@ class Finder(object):
             Syns.append(suggestions)
 
         Synonyms = {
-            "word": Syns
+            f"{query}": Syns
         }
 
         return Synonyms
@@ -248,7 +248,7 @@ class Finder(object):
             Antyns.append(suggestions)
 
         Antonyms = {
-            "word": Antyns
+            f"{query}": Antyns
         }
 
         return Antonyms
