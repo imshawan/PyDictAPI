@@ -29,7 +29,7 @@ class Finder(object):
         else:
             pass
 
-    def IfnotFound(self, word):
+    def __IfnotFound(self, word):
         '''
         1.  Returns any possible matches incase if the queried word is not found
         2.  Returns a resolution incase if nothing is found
@@ -56,7 +56,7 @@ class Finder(object):
         else:
             raise PythonVersionError("Python version 3 or newer is required")
 
-
+        print("Please wait while I'm search for meanings...")
         res = handleRequests(word)
         soup = getSoupObj(res)
         dataItems = {
@@ -115,7 +115,7 @@ class Finder(object):
         if dataItems['meanings']:
             return dataItems
         else:
-            suggestions = self.IfnotFound(word)
+            suggestions = self.__IfnotFound(word)
             return suggestions
         #return word, dataItems
 
