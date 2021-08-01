@@ -25,7 +25,7 @@ def ParseUsage(query):
     except Exception:
         raise ConnectionError("Error occured while fetching data from the web, please try checking the internet connection.")
 
-def ParseSynonyms(query):
+def ParseSynonymsAndAntonyms(query):
     '''Returns HTML document'''
     try:
         response = requests.get(f'https://www.thesaurus.com/browse/{query}').text

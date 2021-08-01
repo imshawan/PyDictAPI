@@ -8,9 +8,9 @@ Copyright (c) 2021 Shawan Mandal
 
 import sys, re
 try:
-    from utils import handleRequests, getSoupObj, ParseUsage, ParseSynonyms
+    from utils import handleRequests, getSoupObj, ParseUsage, ParseSynonymsAndAntonyms
 except:
-    from .utils import handleRequests, getSoupObj, ParseUsage,  ParseSynonyms
+    from .utils import handleRequests, getSoupObj, ParseUsage,  ParseSynonymsAndAntonyms
 
 class PythonVersionError(Exception):
     pass
@@ -23,6 +23,7 @@ class Finder(object):
         >>> print(Meanings.findMeanings('apple'))
         >>> print(Meanings.findUsage('apple', 8))
         >>> print(Meanings.findSynonyms('apple', 8))
+        >>> print(meanings.findAntonyms('apple', 12))
     """
     def __init__(self):
         self.searching = "Please wait while I'm searching for "
@@ -32,24 +33,24 @@ class Finder(object):
         else:
             pass
 
-    def __IfnotFound(self, word):
+    def __IfnotFound(self, query):
         '''
         1.  Returns any possible matches incase if the queried word is not found
         2.  Returns a resolution incase if nothing is found
         '''
-        resolution = {"message": f"Couldn't find any results for {word.upper()}, try searching the web..."}
+        resolution = {"message": f"Couldn't find any results for {query.upper()}, try searching the web..."}
 
-        res = handleRequests(word)
+        res = handleRequests(query)
         soup = getSoupObj(res)
 
         try:
             suggestedContent = soup.find(attrs={'class': 'spell-suggestions-subtitle css-ycbn4w e19m0k9k5'})
             suggestedWord = suggestedContent.find('a')
-            return {"message": f"Couldn't find results for {word}, Did you mean {suggestedWord.text}?"}
+            return {"message": f"Couldn't find results for {query}, Did you mean {suggestedWord.text}?"}
         except:
             return resolution
     
-    def findMeanings(self, word):
+    def findMeanings(self, query):
         '''
         Searches for a word and returns response in a python Dictionary Obj,
         Alternatively searches for any possible matches incase the queried word is not found
@@ -60,10 +61,10 @@ class Finder(object):
             raise PythonVersionError("Python version 3 or newer is required")
 
         print(self.searching + "meanings...")
-        res = handleRequests(word)
+        res = handleRequests(query)
         soup = getSoupObj(res)
         dataItems = {
-            "word": word.title(),
+            "word": query.title(),
             "meanings": []
         }
 
@@ -118,7 +119,7 @@ class Finder(object):
         if dataItems['meanings']:
             return dataItems
         else:
-            suggestions = self.__IfnotFound(word)
+            suggestions = self.__IfnotFound(query)
             return suggestions
         #return word, dataItems
 
@@ -156,10 +157,11 @@ class Finder(object):
             for each in ul:
                 if count < maxItems:
                     text = each.text[1:][:-1]
-                    examples.append(text[0].upper() + text[1:])
+                    examples.append(text[0].upper() + text[1:].strip())
                 count += 1
         except:
-            examples.append(f"Couldn't find any usage examples of {query}...")
+            suggestions = self.__IfnotFound(query)
+            examples.append(suggestions)
         usageExamples = {
             "word": examples
         }
@@ -186,7 +188,7 @@ class Finder(object):
 
         print(self.searching + "Synonyms...")
 
-        res = ParseSynonyms(query)
+        res = ParseSynonymsAndAntonyms(query)
         soup = getSoupObj(res)
         Syns = []
         Synonyms = {}
@@ -196,10 +198,11 @@ class Finder(object):
             SynonymsClass = soup.find(attrs={'class': 'e1ccqdb60'}).find_all('li')
             for each in SynonymsClass:
                 if count < maxItems:
-                    Syns.append(each.text[0].upper() + each.text[1:])
+                    Syns.append(each.text[0].upper() + each.text[1:].strip())
                 count += 1
         except:
-            Syns.append(f"Couldn't find any Synonyms of {query}...")
+            suggestions = self.__IfnotFound(query)
+            Syns.append(suggestions)
 
         Synonyms = {
             "word": Syns
@@ -207,3 +210,45 @@ class Finder(object):
 
         return Synonyms
         
+    def findAntonyms(self, query, maxItems=5):
+        """
+        findAntonyms
+        ------------
+        Returns a Python Dictionary of Antonyms \n
+        Args: Query -> (string), Maximum items -> (int) By default its value is 5
+
+        Returns: \n
+        {
+            "word": [ ]
+        }
+        """
+
+        if (self.isPython3):
+            pass
+        else:
+            raise PythonVersionError("Python version 3 or newer is required")
+
+        print(self.searching + "Antonyms...")
+
+        res = ParseSynonymsAndAntonyms(query)
+        soup = getSoupObj(res)
+        Antyns = []
+        Antonyms = {}
+        count = 0
+
+        try:
+            AntonymsClass = soup.find(attrs={'id': 'antonyms'})
+            Antonym = AntonymsClass.find(attrs={'class': 'css-ixatld e1cc71bi0'}).find('ul').find_all('li')
+            for each in Antonym:
+                if count < maxItems:
+                    Antyns.append(each.text[0].upper() + each.text[1:].strip())
+                count += 1
+        except:
+            suggestions = self.__IfnotFound(query)
+            Antyns.append(suggestions)
+
+        Antonyms = {
+            "word": Antyns
+        }
+
+        return Antonyms
