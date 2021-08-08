@@ -65,7 +65,7 @@ The Response can be seen as:
 ```
 ## Exceptions
 
-### Example - 1: If the word is spelt incorrectly
+### Case - 1: If the word is spelt incorrectly
 
 ```python
 print(Meanings.findMeanings('helloooo'))
@@ -79,7 +79,7 @@ The Response can be seen as:
 }
 ```
 
-### Example - 2: If the word doesn't exist
+### Case - 2: If the word doesn't exist
 
 ```python
 print(Meanings.findMeanings('abcdefghijkl'))
