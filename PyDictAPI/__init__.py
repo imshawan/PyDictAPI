@@ -4,7 +4,7 @@
 Python Dictionary API 
 ----------------------
 
-PyDictAPI is library, written in Python, that can be used to fetch meanings of a word from the web.
+PyDictAPI is library, written in Python, that can be used to fetch meanings and translation.
 
 Currently supports only English-English dictionary searches
 
@@ -59,10 +59,13 @@ copyright: (c) 2021 by Shawan Mandal.
 license: MIT License, see LICENSE for more details.
 """
 __author__ = "Shawan Mandal"
-__version__ = "1.3.0"
+__version__ = "1.4.0"
 
 try:
     from .scrape import *
+    from .translater import *
 except:
     from scrape import *
+    from translater import *
+
 
