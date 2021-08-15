@@ -35,7 +35,7 @@ class Translate(object):
     
     def __prettyPrint(self):
         """
-        ## Pretty prints text
+        ### Pretty prints text
         """
         data = self.SUPPORTED_LANGUAGES['sl']
         
@@ -60,6 +60,8 @@ class Translate(object):
         '''
         if self.SUPPORTED_LANGUAGES and pretty == False:
             return self.SUPPORTED_LANGUAGES
+        if self.SUPPORTED_LANGUAGES and pretty == True:
+            return self.prettyText
 
 
         GOOGLE_TRASLATOR_URL = 'http://translate.google.com/translate_a/l'
