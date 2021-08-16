@@ -34,7 +34,7 @@ Meanings = Finder()
 print(Meanings.findMeanings('apple'))
 ```
 
-This is will create a local instance of the MeaningsFinder class and will return a dictionary containing the meanings of the word. <br>
+This is will create a local instance of the Finder class and will return a dictionary containing the meanings of the word. <br>
 The Output can be seen as:
 
 ```
