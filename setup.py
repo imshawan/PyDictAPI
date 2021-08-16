@@ -1,4 +1,5 @@
 from setuptools import setuptools, find_packages
+import io
 
 classifiers = [
         "Intended Audience :: Education",
@@ -7,7 +8,7 @@ classifiers = [
         "Programming Language :: Python :: 3"
     ]
 
-with open("README.md", "r") as readme:
+with io.open("README.md", "r", encoding="utf-8") as readme:
     long_description = readme.read()
 
 setuptools.setup(
