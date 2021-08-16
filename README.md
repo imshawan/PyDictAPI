@@ -23,9 +23,9 @@ pip install PyDictAPI
 ```
 ### [View Changelog](https://github.com/imshawan/PyDictAPI/blob/master/CHANGELOG.md)
 
-## Usage
+## For Dictionary searches
 
-PyDictAPI can be used by creating a Finder instance which can take a word as argument
+Dictionary searches can be performed by creating a Finder instance which can take a word as argument
 
 For example,
 
