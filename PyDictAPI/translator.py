@@ -7,7 +7,7 @@ Copyright (c) 2021 Shawan Mandal
 """
 
 import urllib.request
-import urllib.parse, sys, goslate, json, requests
+import urllib.parse, sys, json, requests
 from urllib.parse import urlencode
 
 try:
@@ -39,12 +39,12 @@ class Translate(object):
     `{'query': 'Hello, How are you?', 'language_detected': 'Hindi', 'translation': 'नमस्कार किसे हो आप?'}`
     """
     def __init__(self):
-        self.searching = "Please wait while I translate your query"
+        self.__searching = "Please wait while I process your query... \n\n"
         self.__CONTENT_HEADERS = {'User-Agent': 
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"}
         self.isPython3 = True
-        self.SUPPORTED_LANGUAGES = {}
-        self.prettyText = "List of the Languages Supported... \n\n"
+        self.__SUPPORTED_LANGUAGES = {}
+        self.__prettyText = "List of the Languages Supported... \n\n"
         
         if (sys.version_info.major) < 3:
             self.isPython3 = False
@@ -55,10 +55,11 @@ class Translate(object):
         """
         ### Pretty prints text
         """
-        data = self.SUPPORTED_LANGUAGES['sl']
-        
+        data = self.__SUPPORTED_LANGUAGES['sl']
+        prettyText = self.__prettyText
         for key in data.keys():
-            self.prettyText += key + ": \t" + data[key] + "\n"
+            prettyText += key + ": \t" + data[key] + "\n"
+        return prettyText
 
     def languages_help(self, pretty=False):
         '''
@@ -82,25 +83,22 @@ class Translate(object):
             pass
         else:
             raise PythonVersionError("Python version 3 or newer is required")
-            
-        if self.SUPPORTED_LANGUAGES and pretty == False:
-            return self.SUPPORTED_LANGUAGES
-        if self.SUPPORTED_LANGUAGES and pretty == True:
-            return self.prettyText
-
-
+        print(self.__searching)    
+        if self.__SUPPORTED_LANGUAGES and pretty == False:
+            return self.__SUPPORTED_LANGUAGES
+        
         TRASLATOR_URL = 'http://translate.google.com/translate_a/l'
         TRASLATOR_PARAMS = {
             'client': 't',
             }
         url = '?'.join((TRASLATOR_URL, urlencode(TRASLATOR_PARAMS)))
         response_content = requests.get(url, headers=self.__CONTENT_HEADERS).text
-        self.SUPPORTED_LANGUAGES = json.loads(response_content)
+        self.__SUPPORTED_LANGUAGES = json.loads(response_content)
+        self.__SUPPORTED_LANGUAGES = json.dumps(self.__SUPPORTED_LANGUAGES, indent=2)
         if pretty:
-            self.__prettyPrint()
-            return self.prettyText
+            return self.__prettyPrint()
 
-        return self.SUPPORTED_LANGUAGES
+        return self.__SUPPORTED_LANGUAGES
 
     def translateItems(self, query, translateLang="auto", from_lang="auto"):
         """

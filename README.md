@@ -36,7 +36,7 @@ print(Meanings.findMeanings('apple'))
 ```
 
 This is will create a local instance of the MeaningsFinder class and will return a dictionary containing the meanings of the word. <br>
-The Response can be seen as:
+The Output can be seen as:
 
 ```
 {
@@ -103,7 +103,7 @@ print(Meanings.findAntonyms('help', 4)) #Finding Antonyms
 
 ```
 
-### Responses for Examples, Synonyms and Antonyms
+### Outputs for Examples, Synonyms and Antonyms
 
 Examples: <br>
 ```
@@ -122,6 +122,23 @@ Antonyms: <br>
 {'help': ['Blockage', 'Encumbrance', 'Handicap', 'Hindrance']}
 ```
 
+## using the Translator
+
+```python
+from PyDictAPI import Translate
+t = Translate()
+print(t.languages_help(pretty=True))
+#	Pretty=true returns the list of supported languages in a well structured manner
+#	By default Pretty is set to False
+
+print(t.translateItems("Hello, How are you?", "hi"))	#	hi: Hindi
+
+#	Translates text according to the language code
+```
+Output:
+```
+{'query': 'Hello, How are you?', 'language_detected': 'Hindi', 'translation': 'नमस्कार किसे हो आप?'}
+```
 
 ## About
 
