@@ -39,12 +39,12 @@ class Translate(object):
     `{'query': 'Hello, How are you?', 'language_detected': 'Hindi', 'translation': 'नमस्कार किसे हो आप?'}`
     """
     def __init__(self):
-        self.__searching = "Please wait while I process your query... \n\n"
+        self.__searching = "Please wait while I process your query... \n"
         self.__CONTENT_HEADERS = {'User-Agent': 
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"}
         self.isPython3 = True
         self.__SUPPORTED_LANGUAGES = {}
-        self.__prettyText = "List of the Languages Supported... \n"
+        self.__prettyText = "List of the Languages Supported... \n\n"
         
         if (sys.version_info.major) < 3:
             self.isPython3 = False
