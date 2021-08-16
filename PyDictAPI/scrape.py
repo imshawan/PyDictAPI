@@ -6,7 +6,7 @@ Copyright (c) 2021 Shawan Mandal
 
 """
 
-import sys
+import sys, json
 try:
     from utils import handleRequests, getSoupObj, ParseUsage, ParseSynonymsAndAntonyms
 except:
@@ -117,7 +117,7 @@ class Finder(object):
             else:
                 pass
         if dataItems['meanings']:
-            return dataItems
+            return json.dumps(dataItems, indent=2, ensure_ascii=False)
         else:
             suggestions = self.__IfnotFound(query)
             return suggestions
@@ -166,7 +166,7 @@ class Finder(object):
             f"{query}": examples
         }
 
-        return usageExamples
+        return json.dumps(usageExamples, indent=2, ensure_ascii=False)
     
     def findSynonyms(self, query, maxItems=5):
         """
@@ -208,7 +208,7 @@ class Finder(object):
             f"{query}": Syns
         }
 
-        return Synonyms
+        return json.dumps(Synonyms, indent=2, ensure_ascii=False)
         
     def findAntonyms(self, query, maxItems=5):
         """
@@ -238,7 +238,7 @@ class Finder(object):
 
         try:
             AntonymsClass = soup.find(attrs={'id': 'antonyms'})
-            Antonym = AntonymsClass.find(attrs={'class': 'css-ixatld e1cc71bi0'}).find('ul').find_all('li')
+            Antonym = AntonymsClass.find(attrs={'class': 'css-ixatld e15rdun50'}).find('ul').find_all('li')
             for each in Antonym:
                 if count < maxItems:
                     Antyns.append(each.text[0].upper() + each.text[1:].strip())
@@ -251,4 +251,4 @@ class Finder(object):
             f"{query}": Antyns
         }
 
-        return Antonyms
+        return json.dumps(Antonyms, indent=2, ensure_ascii=False)
