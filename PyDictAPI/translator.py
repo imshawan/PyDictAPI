@@ -157,4 +157,4 @@ class Translate(object):
                 "message": "Couldn't translate your query, please try searching the web..."
                 }
         
-        return Translation
+        return json.dumps(Translation, indent=2, ensure_ascii=False)
