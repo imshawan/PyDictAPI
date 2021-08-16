@@ -44,7 +44,7 @@ class Translate(object):
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"}
         self.isPython3 = True
         self.__SUPPORTED_LANGUAGES = {}
-        self.__prettyText = "List of the Languages Supported... \n\n"
+        self.__prettyText = "List of the Languages Supported... \n"
         
         if (sys.version_info.major) < 3:
             self.isPython3 = False
