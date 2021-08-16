@@ -15,7 +15,7 @@ setuptools.setup(
     version="1.4.0",
     author="Shawan Mandal",
     author_email="imshawan.dev049@gmail.com",
-    description="A simple web-scraping based Dictionary and Translater Module for Python",
+    description="A simple Dictionary and Translator Module for Python",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/imshawan/PyDictAPI",
