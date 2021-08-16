@@ -16,29 +16,29 @@ Basic usage:
 
 Response:
 
-    {
-        'word': 'apple', 
-        'meanings': [
-            {
-                'partOfSpeech': 'noun', 
-                'definitions': [
-                    {
-                        'definition': 'the usually round, red or yellow, edible fruit of a small tree, Malus sylvestris, of the rose family.', 
-                        'example': ''
-                    }
-                ]
-            }, 
-            {
-                'partOfSpeech': 'noun', 
-                'definitions': [
-                    {
-                        'definition': 'a rosaceous tree, Malus sieversii, native to Central Asia but widely cultivated in temperate regions in many varieties, having pink or white fragrant flowers and firm rounded edible fruits', 
-                        'example': ''
-                    }
-                ]
-            }
-        ]
-    }
+`{
+    'word': 'apple', 
+    'meanings': [
+        {
+            'partOfSpeech': 'noun', 
+            'definitions': [
+                {
+                    'definition': 'the usually round, red or yellow, edible fruit of a small tree, Malus sylvestris, of the rose family.', 
+                    'example': ''
+                }
+            ]
+        }, 
+        {
+            'partOfSpeech': 'noun', 
+            'definitions': [
+                {
+                    'definition': 'a rosaceous tree, Malus sieversii, native to Central Asia but widely cultivated in temperate regions in many varieties, having pink or white fragrant flowers and firm rounded edible fruits', 
+                    'example': ''
+                }
+            ]
+        }
+    ]
+}`
 ---------------------------------------    
 Finding Examples, Synonyms and Antonyms
 ---------------------------------------
@@ -63,9 +63,9 @@ __version__ = "1.4.0"
 
 try:
     from .scrape import *
-    from .translater import *
+    from .translator import *
 except:
     from scrape import *
-    from translater import *
+    from translator import *
 
 

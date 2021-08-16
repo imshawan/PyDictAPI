@@ -19,10 +19,28 @@ class PythonVersionError(Exception):
     pass
 
 class Translate(object):
+    """
+    ## PyDictAPI: Translator - The Free Translation API
+    
+    You have to first create an instance of Translate to use this API
 
+    ### Example:
+    >>> # Import the module first
+    >>> from PyDictAPI import Translate
+    >>> t = Translate() #   Creates an instance of Translate class
+    >>> 
+    >>> # You can get all supported language list through languages_help()
+    >>> languages = t.languages_help(pretty=True)
+    >>> # Pretty=true returns the list of supported languages in a well structured manner. By default Pretty is set to False
+    >>> 
+    >>> # Tranlate English into Hindi
+    >>> print(t.translateItems("Hello, How are you?", "hi"))
+
+    `{'query': 'Hello, How are you?', 'language_detected': 'Hindi', 'translation': 'नमस्कार किसे हो आप?'}`
+    """
     def __init__(self):
         self.searching = "Please wait while I translate your query"
-        self.CONTENT_HEADERS = {'User-Agent': 
+        self.__CONTENT_HEADERS = {'User-Agent': 
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"}
         self.isPython3 = True
         self.SUPPORTED_LANGUAGES = {}
@@ -43,7 +61,8 @@ class Translate(object):
             self.prettyText += key + ": \t" + data[key] + "\n"
 
     def languages_help(self, pretty=False):
-        '''# Returns supported languages
+        '''
+        # Returns supported languages
 
         It returns language codes for supported languages for translation. 
         Some language codes also include a country code, like zh-CN or zh-TW.
@@ -58,18 +77,24 @@ class Translate(object):
         and by default pretty is False, use pretty=True for pretty print
 
         '''
+
+        if (self.isPython3):
+            pass
+        else:
+            raise PythonVersionError("Python version 3 or newer is required")
+            
         if self.SUPPORTED_LANGUAGES and pretty == False:
             return self.SUPPORTED_LANGUAGES
         if self.SUPPORTED_LANGUAGES and pretty == True:
             return self.prettyText
 
 
-        GOOGLE_TRASLATOR_URL = 'http://translate.google.com/translate_a/l'
-        GOOGLE_TRASLATOR_PARAMS = {
+        TRASLATOR_URL = 'http://translate.google.com/translate_a/l'
+        TRASLATOR_PARAMS = {
             'client': 't',
             }
-        url = '?'.join((GOOGLE_TRASLATOR_URL, urlencode(GOOGLE_TRASLATOR_PARAMS)))
-        response_content = requests.get(url, headers=self.CONTENT_HEADERS).text
+        url = '?'.join((TRASLATOR_URL, urlencode(TRASLATOR_PARAMS)))
+        response_content = requests.get(url, headers=self.__CONTENT_HEADERS).text
         self.SUPPORTED_LANGUAGES = json.loads(response_content)
         if pretty:
             self.__prettyPrint()
@@ -80,17 +105,27 @@ class Translate(object):
     def translateItems(self, query, translateLang="auto", from_lang="auto"):
         """
         Translates a word or sentence using google translate and returns the translated result.
+
+        ### Example:
+        >>> # Import the module first
+        >>> from PyDictAPI import Translate
+        >>> t = Translate() #   Creates an instance of Translate class
+        >>> 
+        >>> # Tranlate English into Hindi
+        >>> print(t.translateItems("Hello, How are you?", "hi"))
+
+        `{'query': 'Hello, How are you?', 'language_detected': 'Hindi', 'translation': 'नमस्कार किसे हो आप?'}`
         """
 
         if (self.isPython3):
             pass
         else:
             raise PythonVersionError("Python version 3 or newer is required")
-
+        text = query
         query = urllib.parse.quote(query)
         URL = f"http://translate.google.com/m?tl={translateLang}&sl={from_lang}&q={query}"
 
-        request = urllib.request.Request(URL, headers=self.CONTENT_HEADERS)
+        request = urllib.request.Request(URL, headers=self.__CONTENT_HEADERS)
         responseData = urllib.request.urlopen(request).read()
         data = getSoupObj(responseData)
         translatedList = []
@@ -107,20 +142,20 @@ class Translate(object):
                 for each in temp:
                     translatedList.append(each.text)
                 Translation = {
-                "query": query,
-                "translation_language": lang,
+                "query": text,
+                "language_detected": lang,
                 "translation": translatedList
                 }
 
             else:
                 Translation = {
-                "query": query,
-                "translation_language": lang,
+                "query": text,
+                "language_detected": lang,
                 "translation": temp[0].text
                 }
         except:
             Translation = {
-                "query": query,
+                "query": text,
                 "message": "Couldn't translate your query, please try searching the web..."
                 }
         
