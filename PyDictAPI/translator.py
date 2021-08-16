@@ -120,6 +120,8 @@ class Translate(object):
         else:
             raise PythonVersionError("Python version 3 or newer is required")
         text = query
+        print(self.__searching)    
+
         query = urllib.parse.quote(query)
         URL = f"http://translate.google.com/m?tl={translateLang}&sl={from_lang}&q={query}"
 
