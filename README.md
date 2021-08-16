@@ -6,7 +6,8 @@
 # PyDictAPI
 ### A simple Dictionary and Translator Module for Python
 
-PyDictAPI is a Dictionary Module for Python 3+ to get a detailed and well-structured meanings of a queried word in JSON format.PyDictAPI searches for the query on the web, if the query matches than it returns the Definitions/Examples/Synonyms/Antonyms as specified by the user. And incase of incorrect words, the response is returned as a suggestion of the correct word.<br>
+PyDictAPI is a Dictionary Module for Python 3+ to get a detailed and well-structured meanings of a queried word in JSON format. PyDictAPI searches for the query on the web, if the query matches than it returns the Definitions/Examples/Synonyms/Antonyms as specified by the user. And incase of incorrect words, the response is returned as a suggestion of the correct word.<br>
+And incase of wrong translation-query or language code, the source query is returned back.
 
 >  **Sources:** [Dictionary.com](https://www.dictionary.com/), [Thesaurus](https://www.thesaurus.com/), [Lexico](https://www.lexico.com/)
 
