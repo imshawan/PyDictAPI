@@ -122,7 +122,7 @@ Antonyms: <br>
 {'help': ['Blockage', 'Encumbrance', 'Handicap', 'Hindrance']}
 ```
 
-## using the Translator
+## Using the Translator
 
 ```python
 from PyDictAPI import Translate
