@@ -127,9 +127,10 @@ Antonyms: <br>
 ```python
 from PyDictAPI import Translate
 t = Translate()
+print(t.languages_help()) # Prints all supported languages
+#   OR
 print(t.languages_help(pretty=True))
-#	Pretty=true returns the list of supported languages in a well structured manner
-#	By default Pretty is set to False
+#	Pretty=true returns the list in a well structured manner. By default Pretty is set to False
 
 print(t.translateItems("Hello, How are you?", "hi"))	#	hi: Hindi
 
