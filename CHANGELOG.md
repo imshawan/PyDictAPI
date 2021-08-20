@@ -1,7 +1,11 @@
-What's inside:
+What's changed?:
 --------------
 
-1.4.0 (17/08/2021)
+1.5.0 (20/08/2021)
+------------------
+*   Fixed error while pretty-printing of supported languages.
+
+1.4.2 (17/08/2021)
 ------------------
 *   Added support for Translation into multiple languages.
 *   Can query out list of supporting translation languages.

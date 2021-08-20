@@ -55,7 +55,8 @@ class Translate(object):
         """
         ### Pretty prints text
         """
-        data = self.__SUPPORTED_LANGUAGES['sl']
+        SUPPORTED_LANGUAGES = json.loads(self.__SUPPORTED_LANGUAGES)
+        data = SUPPORTED_LANGUAGES['sl']
         prettyText = self.__prettyText
         for key in data.keys():
             prettyText += key + ": \t" + data[key] + "\n"
