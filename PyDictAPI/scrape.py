@@ -68,26 +68,28 @@ class Finder(object):
             "meanings": []
         }
 
-        contents = soup.findAll(attrs={'class': 'css-pnw38j e1hk9ate4'})
+        contents = soup.findAll('section', attrs={'class': 'e1hk9ate4'})
         for each in contents:
             defFound = True
             json_contents = {}
-            partOfSpeech = each.find(attrs={'class': 'css-18hgvva e1hk9ate3'})
+            partOfSpeech = each.find(attrs={'class': 'e1hk9ate3'})
             for pos in partOfSpeech.find_all("span", {'class':'luna-inflected-form'}):
                     pos.replaceWith('')
             for pos1 in partOfSpeech.find_all("span", {'class':'inflected-form'}):
                     pos1.replaceWith('')
             for pos2 in partOfSpeech.find_all("span", {'class':'luna-pronset'}):
                     pos2.replaceWith('')
-            partOfSpeech = partOfSpeech.get_text().title()
+            partOfSpeech = partOfSpeech.get_text().title().strip()
+            if partOfSpeech[-1] == ",":
+                partOfSpeech = partOfSpeech[0:][:-1]
             json_contents = {
                 "partOfSpeech": partOfSpeech,
                 "definitions": []
             }
-            definitions = each.findAll(attrs={'class': 'css-1uqerbd e1hk9ate0'})
+            definitions = each.findAll('div', attrs={'class': 'e1hk9ate0'})
             def_list = ""
             for definition in definitions:
-                def_content = definition.find(attrs={'class': 'e1q3nk1v1'})
+                def_content = definition.find(attrs={'class': 'e1q3nk1v2'})
             
                 if def_content:
                     for tag in def_content.find_all("span", {'class':'luna-example'}):
