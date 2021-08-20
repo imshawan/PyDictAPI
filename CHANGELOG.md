@@ -1,9 +1,10 @@
 What's changed?:
 --------------
 
-1.5.0 (20/08/2021)
+1.5.1 (20/08/2021)
 ------------------
 *   Fixed error while pretty-printing of supported languages.
+*   Fixed error: Couldn't find meanings (Due to change in source page structure).
 
 1.4.2 (17/08/2021)
 ------------------
