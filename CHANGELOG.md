@@ -1,4 +1,4 @@
-What's changed?:
+What's changed?
 --------------
 
 1.5.1 (20/08/2021)
