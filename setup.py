@@ -13,7 +13,7 @@ with io.open("README.md", "r", encoding="utf-8") as readme:
 
 setuptools.setup(
     name="PyDictAPI",
-    version="1.5.0",
+    version="1.5.1",
     author="Shawan Mandal",
     author_email="imshawan.dev049@gmail.com",
     description="An advanced Dictionary and Translator Module for Python",
