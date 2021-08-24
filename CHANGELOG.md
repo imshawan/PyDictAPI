@@ -1,6 +1,10 @@
 What's changed?
 --------------
 
+1.5.2 (25/08/2021)
+------------------
+*   Fixed errors arising due to too many redirects.
+
 1.5.1 (20/08/2021)
 ------------------
 *   Fixed error while pretty-printing of supported languages.
