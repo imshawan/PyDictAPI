@@ -11,24 +11,26 @@ from bs4 import BeautifulSoup
 
 def handleRequests(query):
     '''Returns HTML document'''
+    URL = 'https://www.dictionary.com/browse/{0}'.format(query)
     try:
-        response = requests.get(f'https://www.dictionary.com/browse/{query}').text
-        return response
+        return requests.get(URL, allow_redirects=False).text
     except Exception:
         raise ConnectionError("Error occured while fetching data from the web, please try checking the internet connection.")
 
 def ParseUsage(query):
     '''Returns HTML document'''
+    URL = 'https://www.lexico.com/en/definition/{0}'.format(query)
     try:
-        response = requests.get(f'https://www.lexico.com/en/definition/{query}').text
+        response = requests.get(URL, allow_redirects=False).text
         return response
     except Exception:
         raise ConnectionError("Error occured while fetching data from the web, please try checking the internet connection.")
 
 def ParseSynonymsAndAntonyms(query):
     '''Returns HTML document'''
+    URL = 'https://www.thesaurus.com/browse/{0}'.format(query)
     try:
-        response = requests.get(f'https://www.thesaurus.com/browse/{query}').text
+        response = requests.get(URL, allow_redirects=False).text
         return response
     except Exception:
         raise ConnectionError("Error occured while fetching data from the web, please try checking the internet connection.")
