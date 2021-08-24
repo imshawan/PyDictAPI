@@ -77,7 +77,7 @@ license: MIT License, see LICENSE for more details.
 """
 __author__ = "Shawan Mandal"
 __email__ = "imshawan.dev049@gmail.com"
-__version__ = "1.5.1"
+__version__ = "1.5.2"
 
 try:
     from .scrape import *
