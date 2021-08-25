@@ -176,8 +176,10 @@ class Finder(object):
         usageExamples = {
             f"{query}": examples
         }
-
-        return json.dumps(usageExamples, indent=2, ensure_ascii=False)
+        if self.__jsonify:
+            return json.dumps(usageExamples, indent=2, ensure_ascii=False)
+        else:
+            return examples
     
     def findSynonyms(self, query, maxItems=5):
         """
@@ -218,8 +220,10 @@ class Finder(object):
         Synonyms = {
             f"{query}": Syns
         }
-
-        return json.dumps(Synonyms, indent=2, ensure_ascii=False)
+        if self.__jsonify:
+            return json.dumps(Synonyms, indent=2, ensure_ascii=False)
+        else:
+            return Syns
         
     def findAntonyms(self, query, maxItems=5):
         """
@@ -261,5 +265,7 @@ class Finder(object):
         Antonyms = {
             f"{query}": Antyns
         }
-
-        return json.dumps(Antonyms, indent=2, ensure_ascii=False)
+        if self.__jsonify:
+            return json.dumps(Antonyms, indent=2, ensure_ascii=False)
+        else:
+            return Antyns

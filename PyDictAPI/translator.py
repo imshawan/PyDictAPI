@@ -38,7 +38,8 @@ class Translate(object):
 
     `{'query': 'Hello, How are you?', 'language_detected': 'Hindi', 'translation': 'नमस्कार किसे हो आप?'}`
     """
-    def __init__(self):
+    def __init__(self, jsonify=False):
+        self.__jsonify = jsonify
         self.__searching = "Please wait while I process your query... \n"
         self.__CONTENT_HEADERS = {'User-Agent': 
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"}
@@ -62,7 +63,7 @@ class Translate(object):
             prettyText += key + ": \t" + data[key] + "\n"
         return prettyText
 
-    def languages_help(self, pretty=False):
+    def languages_help(self):
         '''
         # Returns supported languages
 
@@ -85,7 +86,7 @@ class Translate(object):
         else:
             raise PythonVersionError("Python version 3 or newer is required")
         print(self.__searching)    
-        if self.__SUPPORTED_LANGUAGES and pretty == False:
+        if self.__SUPPORTED_LANGUAGES and self.__jsonify == False:
             return self.__SUPPORTED_LANGUAGES
         
         TRASLATOR_URL = 'http://translate.google.com/translate_a/l'
@@ -96,7 +97,7 @@ class Translate(object):
         response_content = requests.get(url, headers=self.__CONTENT_HEADERS).text
         self.__SUPPORTED_LANGUAGES = json.loads(response_content)
         self.__SUPPORTED_LANGUAGES = json.dumps(self.__SUPPORTED_LANGUAGES, indent=2)
-        if pretty:
+        if not self.__jsonify:
             return self.__prettyPrint()
 
         return self.__SUPPORTED_LANGUAGES
@@ -130,6 +131,7 @@ class Translate(object):
         responseData = urllib.request.urlopen(request).read()
         data = getSoupObj(responseData)
         translatedList = []
+        processedItem = ""
         Translation = {}
         try:
             lang = data.find(attrs={"class": "languages-container"}).find_all("a")
@@ -144,20 +146,24 @@ class Translate(object):
                     translatedList.append(each.text)
                 Translation = {
                 "query": text,
-                "language_detected": lang,
+                "language": lang,
                 "translation": translatedList
                 }
+                processedItem = translatedList
 
             else:
                 Translation = {
                 "query": text,
-                "language_detected": lang,
+                "language": lang,
                 "translation": temp[0].text
                 }
+                processedItem = temp[0].text
         except:
             Translation = {
                 "query": text,
                 "message": "Couldn't translate your query, please try searching the web..."
                 }
-        
-        return json.dumps(Translation, indent=2, ensure_ascii=False)
+        if self.__jsonify:
+            return json.dumps(Translation, indent=2, ensure_ascii=False)
+        else:
+            return processedItem
