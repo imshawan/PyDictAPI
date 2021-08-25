@@ -17,6 +17,14 @@ def handleRequests(query):
     except Exception:
         raise ConnectionError("Error occured while fetching data from the web, please try checking the internet connection.")
 
+def handleCorrection(query):
+    '''Returns HTML document'''
+    URL = 'https://www.dictionary.com/misspelling?term={0}'.format(query)
+    try:
+        return requests.get(URL, allow_redirects=False).text
+    except Exception:
+        raise ConnectionError("Error occured while fetching data from the web, please try checking the internet connection.")
+
 def ParseUsage(query):
     '''Returns HTML document'''
     URL = 'https://www.lexico.com/en/definition/{0}'.format(query)

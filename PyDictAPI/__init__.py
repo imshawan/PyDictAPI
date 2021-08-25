@@ -23,8 +23,7 @@ Output:
             'partOfSpeech': 'noun', 
             'definitions': [
                 {
-                    'definition': 'the usually round, red or yellow, edible fruit of a small tree, Malus sylvestris, of the rose family.', 
-                    'example': ''
+                    'definition': 'the usually round, red or yellow, edible fruit of a small tree, Malus sylvestris, of the rose family.'
                 }
             ]
         }, 
@@ -32,8 +31,7 @@ Output:
             'partOfSpeech': 'noun', 
             'definitions': [
                 {
-                    'definition': 'a rosaceous tree, Malus sieversii, native to Central Asia but widely cultivated in temperate regions in many varieties, having pink or white fragrant flowers and firm rounded edible fruits', 
-                    'example': ''
+                    'definition': 'a rosaceous tree, Malus sieversii, native to Central Asia but widely cultivated in temperate regions in many varieties, having pink or white fragrant flowers and firm rounded edible fruits'
                 }
             ]
         }

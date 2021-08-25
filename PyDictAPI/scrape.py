@@ -8,9 +8,9 @@ Copyright (c) 2021 Shawan Mandal
 
 import sys, json
 try:
-    from utils import handleRequests, getSoupObj, ParseUsage, ParseSynonymsAndAntonyms
+    from utils import handleRequests, handleCorrection, getSoupObj, ParseUsage, ParseSynonymsAndAntonyms
 except:
-    from .utils import handleRequests, getSoupObj, ParseUsage,  ParseSynonymsAndAntonyms
+    from .utils import handleRequests, handleCorrection, getSoupObj, ParseUsage,  ParseSynonymsAndAntonyms
 
 class PythonVersionError(Exception):
     pass
@@ -25,7 +25,8 @@ class Finder(object):
         >>> print(Meanings.findSynonyms('apple', 8))
         >>> print(meanings.findAntonyms('apple', 12))
     """
-    def __init__(self):
+    def __init__(self, jsonify=False):
+        self.__jsonify=jsonify
         self.searching = "Please wait while I'm searching for "
         self.isPython3 = True
         if (sys.version_info.major) < 3:
@@ -38,17 +39,22 @@ class Finder(object):
         1.  Returns any possible matches incase if the queried word is not found
         2.  Returns a resolution incase if nothing is found
         '''
-        resolution = {"message": f"Couldn't find any results for {query.upper()}, try searching the web..."}
+        errorString = {"message": f"Couldn't find any results for {query.upper()}, try searching the web..."}
 
-        res = handleRequests(query)
+        res = handleCorrection(query)
         soup = getSoupObj(res)
 
         try:
-            suggestedContent = soup.find(attrs={'class': 'spell-suggestions-subtitle css-ycbn4w e19m0k9k5'})
+            suggestedContent = soup.find('h2', attrs={'class': 'spell-suggestions-subtitle'})
             suggestedWord = suggestedContent.find('a')
-            return {"message": f"Couldn't find results for {query}, Did you mean {suggestedWord.text}?"}
+            resolution = {"message": f"Couldn't find results for {query}, Did you mean {suggestedWord.text}?"}
         except:
-            return resolution
+            resolution = errorString
+
+        if self.__jsonify:
+            return json.dumps(resolution, indent=2, ensure_ascii=False)
+        else:
+            return resolution["message"]
     
     def findMeanings(self, query):
         '''
@@ -63,6 +69,8 @@ class Finder(object):
         print(self.searching + "meanings...")
         res = handleRequests(query)
         soup = getSoupObj(res)
+        _pOs = None
+        partOfSpeech = ""
         dataItems = {
             "word": query.title(),
             "meanings": []
@@ -98,11 +106,6 @@ class Finder(object):
                     def_content = def_content[0].upper() + def_content[1:]
                 else:
                     def_content = ''
-            
-                try:
-                    example = definition.find(attrs={'class': 'luna-example'}).text
-                except:
-                    example = ""
 
                 def_list += def_content
                 def_list = def_list.strip()
@@ -110,8 +113,7 @@ class Finder(object):
                 defFound = False
             else:
                 json_content = {
-                    "definition": def_list,
-                    "example": example
+                    "definition": def_list
                 }
             if defFound:
                 json_contents['definitions'].append(json_content)
@@ -119,10 +121,22 @@ class Finder(object):
             else:
                 pass
         if dataItems['meanings']:
-            return json.dumps(dataItems, indent=2, ensure_ascii=False)
+            processedQuery = json.dumps(dataItems, indent=2, ensure_ascii=False)
         else:
-            suggestions = self.__IfnotFound(query)
-            return suggestions
+            processedQuery = self.__IfnotFound(query)
+            
+        processedData = []
+        if self.__jsonify:
+            return processedQuery
+        else:
+            if dataItems['meanings']:
+                for items in dataItems['meanings']:
+                    data = []
+                    data.append(items['partOfSpeech'])
+                    data.append([x['definition'] for x in items['definitions']])
+                    processedData.append(data)
+                return processedData
+
         #return word, dataItems
 
     def findUsage(self, query, maxItems=5):
