@@ -92,7 +92,7 @@ class Finder(object):
                 partOfSpeech = partOfSpeech[0:][:-1]
             json_contents = {
                 "partOfSpeech": partOfSpeech,
-                "definitions": []
+                "definition": ""
             }
             definitions = each.findAll('div', attrs={'class': 'e1hk9ate0'})
             def_list = ""
@@ -111,12 +111,8 @@ class Finder(object):
                 def_list = def_list.strip()
             if def_list == "":
                 defFound = False
-            else:
-                json_content = {
-                    "definition": def_list
-                }
             if defFound:
-                json_contents['definitions'].append(json_content)
+                json_contents['definition'] = def_list
                 dataItems['meanings'].append(json_contents)
             else:
                 pass
@@ -124,7 +120,6 @@ class Finder(object):
             processedQuery = json.dumps(dataItems, indent=2, ensure_ascii=False)
         else:
             processedQuery = self.__IfnotFound(query)
-            
         processedData = []
         if self.__jsonify:
             return processedQuery
@@ -133,7 +128,7 @@ class Finder(object):
                 for items in dataItems['meanings']:
                     data = []
                     data.append(items['partOfSpeech'])
-                    data.append([x['definition'] for x in items['definitions']])
+                    data.append(items['definition'])
                     processedData.append(data)
                 return processedData
 
