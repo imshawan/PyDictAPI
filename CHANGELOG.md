@@ -1,6 +1,12 @@
 What's changed?
 --------------
 
+1.6.0 (03/09/2021)
+------------------
+*   Now a user can specify the output generated (JSON or not) while creating the instances.
+*   Removed junk and updated JSON structure.
+*   Fix: Autocorrection was not working incase of incorrect spellings.
+
 1.5.2 (25/08/2021)
 ------------------
 *   Fixed errors arising due to too many redirects.
