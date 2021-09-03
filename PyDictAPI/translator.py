@@ -27,11 +27,10 @@ class Translate(object):
     ### Example:
     >>> # Import the module first
     >>> from PyDictAPI import Translate
-    >>> t = Translate() #   Creates an instance of Translate class
-    >>> 
+    >>> t = Translate(jsonify=True) #   Creates an instance of Translate class
+    >>> # jsonify=True returns response in JSON, and by default jsonify is False
     >>> # You can get all supported language list through languages_help()
-    >>> languages = t.languages_help(pretty=True)
-    >>> # Pretty=true returns the list of supported languages in a well structured manner. By default Pretty is set to False
+    >>> languages = t.languages_help())
     >>> 
     >>> # Tranlate English into Hindi
     >>> print(t.translateItems("Hello, How are you?", "hi"))
@@ -73,11 +72,11 @@ class Translate(object):
         :Example:
 
         >>> from PyDictAPI import Translate
-        >>> t = Translate()
-        >>> print(t.languages_help(pretty=True))
+        >>> t = Translate(jsonify=True)
+        >>> print(t.languages_help())
 
-        pretty=False returns a json response,
-        and by default pretty is False, use pretty=True for pretty print
+        jsonify=True returns a json response,
+        and by default jsonify is False
 
         '''
 
@@ -109,7 +108,7 @@ class Translate(object):
         ### Example:
         >>> # Import the module first
         >>> from PyDictAPI import Translate
-        >>> t = Translate() #   Creates an instance of Translate class
+        >>> t = Translate(jsonify=true) #   Creates an instance of Translate class
         >>> 
         >>> # Tranlate English into Hindi
         >>> print(t.translateItems("Hello, How are you?", "hi"))
