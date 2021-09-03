@@ -22,44 +22,37 @@ pip install PyDictAPI
 ```
 ### [View Changelog](https://github.com/imshawan/PyDictAPI/blob/master/CHANGELOG.md)
 
+###  Both the Finder and Translator class takes an arguement "jsonify" that is set to False by default. If jsonify is set to True, than the processed queries are returned in JSON. While by default the queries are returned in the form of a Python List (Array)
+
 ## Dictionary searches
 
-Dictionary searches can be performed by creating a Finder instance which can take a word as argument
+Dictionary searches can be performed by creating a Finder instance and later calling findMeanings() that takes a word as an arguement.
 
 For example,
 
 ```python
 from PyDictAPI import Finder
-Meanings = Finder()
+Meanings = Finder(jsonify=True)
+# Use can use Finder() without 'jsonify' to get response in the form of a Python List
 print(Meanings.findMeanings('apple'))
 ```
 
-This is will create a local instance of the Finder class and will return a dictionary containing the meanings of the word. <br>
+This is will create a local instance of the Finder class and will return a python containing the meanings of the word. <br>
 The Output can be seen as:
 
 ```
 {
-    'word': 'Apple', 
-    'meanings': [
-            {
-                'partOfSpeech': 'Noun', 
-                'definitions': [
-                        {
-                            'definition': 'The usually round, red or yellow, edible fruit of a small tree, Malus sylvestris, of the rose family.', 
-                            'example': ''
-                        }
-                    ]
-            }, 
-            {
-                'partOfSpeech': 'Noun', 
-                'definitions': [
-                    {
-                        'definition': 'A rosaceous tree, Malus sieversii, native to Central Asia but widely cultivated in temperate regions in many varieties, having pink or white fragrant flowers and firm rounded edible fruits', 
-                        'example': ''
-                    }
-                ]
-            }
-        ]
+  "word": "Apple",
+  "meanings": [
+    {
+      "partOfSpeech": "Noun",
+      "definition": "The usually round, red or yellow, edible fruit of a small tree, Malus sylvestris, of the rose family."  
+    },
+    {
+      "partOfSpeech": "Noun",
+      "definition": "A rosaceous tree, Malus sieversii, native to Central Asia but widely cultivated in temperate regions in many varieties, having pink or white fragrant flowers and firm rounded edible fruits. See also crab apple"
+    }
+  ]
 }                                                                       
 ```
 ## Exceptions
@@ -67,32 +60,37 @@ The Output can be seen as:
 ### Case - 1: If the word is spelt incorrectly
 
 ```python
+from PyDictAPI import Finder
+Meanings = Finder()
+# jsonify is set to false by default, so the output returned is in plain string.
 print(Meanings.findMeanings('helloooo'))
 ```
 Incase of incorrect words, the response is returned as a suggestion of the correct word <br>
 The Response can be seen as:
 
 ```
-{
-    'message': 'Couldn't find results for helloooo, Did you mean hello?'
-}
+Couldn't find results for helloooo, Did you mean hello?
 ```
 
 ### Case - 2: If the word doesn't exist
 
 ```python
+from PyDictAPI import Finder
+Meanings = Finder()
 print(Meanings.findMeanings('abcdefghijkl'))
 ```
 The Response can be seen as:
 
 ```
-{
-    'message': 'Couldn't find any results for ABCDEFGHIJKL, try searching the web...'
-}
+Couldn't find any results for ABCDEFGHIJKL, try searching the web...
 ```
 ## Finding Examples, Synonyms and Antonyms
 
 ```python
+from PyDictAPI import Finder
+Meanings = Finder()
+# jsonify is set to false by default, so the output returned is in python list.
+
 print(Meanings.findUsage('help', 2)) #Finding Examples
 # Here 2 defines the maximum number of examples to be included in the response, 
 # by default it is set to 5
@@ -106,38 +104,33 @@ print(Meanings.findAntonyms('help', 4)) #Finding Antonyms
 
 Examples: <br>
 ```
-{
-    'help': ['She helped him find a buyer', 'Long-term funding is desperately being sought for a voluntary service that helps local victims of domestic violence.']
-}
+['She helped him find a buyer', 'Long-term funding is desperately being sought for a voluntary service that helps local victims of domestic violence.']
 ```
 
 Synonyms: <br>
 ```
-{'help': ['Advice', 'Aid', 'Benefit', 'Comfort']}
+['Advice', 'Aid', 'Benefit', 'Comfort']
 ```
 
 Antonyms: <br>
 ```
-{'help': ['Blockage', 'Encumbrance', 'Handicap', 'Hindrance']}
+['Blockage', 'Encumbrance', 'Handicap', 'Hindrance']
 ```
 
 ## Using the Translator
 
 ```python
 from PyDictAPI import Translate
-t = Translate()
-print(t.languages_help()) # Prints all supported languages
+t = Translate(jsonify=True)
+print(t.languages_help()) # Prints all supported languages with language code
 
-print(t.languages_help(pretty=True))
-# Pretty=true returns the list in a well structured manner. By default Pretty is set to False
-
-print(t.translateItems("Hello, How are you?", "hi"))	#	hi: Hindi
+print(t.translateItems("Hello, How are you?", "hi")) # hi: Hindi
 
 # Translates text according to the language code
 ```
 Output:
 ```
-{'query': 'Hello, How are you?', 'language_detected': 'Hindi', 'translation': 'नमस्कार किसे हो आप?'}
+{'query': 'Hello, How are you?', 'language': 'Hindi', 'translation': 'नमस्कार किसे हो आप?'}
 ```
 
 ## About
