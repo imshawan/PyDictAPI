@@ -37,7 +37,7 @@ Meanings = Finder(jsonify=True)
 print(Meanings.findMeanings('apple'))
 ```
 
-This is will create a local instance of the Finder class and will return a python containing the meanings of the word. <br>
+This is will create a local instance of the Finder class and will return results containing the meanings of the word. <br>
 The Output can be seen as:
 
 ```
